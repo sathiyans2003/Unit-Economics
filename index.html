@@ -731,8 +731,7 @@
             <div class="divider"></div>
             <div class="result-row"><span class="rl" style="font-weight:700;color:var(--text)">Net Profit</span><span
                 class="rv" id="e-r-net" style="font-size:16px;">—</span></div>
-            <div class="alert warn" id="e-alert-w">⚠ Below target margin. Consider raising price.</div>
-            <div class="alert good" id="e-alert-g">✓ Margin target hit. Looking profitable!</div>
+
           </div>
 
           <div class="card">
@@ -1012,10 +1011,6 @@
       $('e-net-sub').textContent = `${pctFmt(net, SP)} net margin`;
       $('e-gm-pct').textContent = gmpct;
       $('e-nm-pct').textContent = nmpct;
-
-      const actualM = SP > 0 ? (gross / SP * 100) : 0;
-      $('e-alert-w').classList.toggle('show', actualM < margin && SP > 0);
-      $('e-alert-g').classList.toggle('show', actualM >= margin && net > 0);
     }
 
     // ── SERVICE ──
