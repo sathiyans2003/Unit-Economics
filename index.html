@@ -756,108 +756,136 @@
     <!-- ══════ SERVICE ══════ -->
     <div class="panel" id="panel-service">
       <div class="calc-layout">
+
+        <!-- LEFT -->
         <div style="display:flex;flex-direction:column;gap:16px;">
+
           <div class="card">
             <div class="card-head">
               <div class="card-head-dot"></div>
-              <h3>Delivery Cost</h3>
+              <h3>Business Goals &amp; Revenue</h3>
             </div>
-            <div class="row">
-              <div class="row-label">Labour / freelancer cost</div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="s-labour"
-                  value="2000" oninput="calcS()"></div>
+            <div class="row" style="background:var(--amber-bg)">
+              <div class="row-label strong">Revenue Goal<small style="color:var(--amber)">Total Target Gross
+                  (pre-ads)</small></div>
+              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="s-rev-goal"
+                  value="500000" oninput="calcS()" style="border-color:rgba(245, 158, 11, 0.4)"></div>
             </div>
-            <div class="row">
-              <div class="row-label">Tools &amp; software</div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="s-tools" value="300"
-                  oninput="calcS()"></div>
-            </div>
-            <div class="row">
-              <div class="row-label">Platform / marketplace fee</div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="s-platform"
-                  value="200" oninput="calcS()"></div>
-            </div>
-            <div class="row">
-              <div class="row-label">Payment gateway<small>% of contract</small></div>
-              <div style="display:flex;align-items:center;gap:6px;">
-                <div class="input-shell"><input type="number" id="s-payment-pct" value="2" class="no-prefix has-suffix"
-                    style="width:60px;" oninput="calcS()"><span class="input-suffix">%</span></div>
-                <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="s-payment"
-                    class="auto-field" readonly></div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="row-label">Miscellaneous overheads</div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="s-misc" value="200"
-                  oninput="calcS()"></div>
-            </div>
-            <div class="total-strip"><span class="total-strip-label">Total Delivery Cost</span><span
-                class="total-strip-val" id="s-cogs" style="color:var(--brand-2)">—</span></div>
           </div>
+
           <div class="card">
             <div class="card-head">
               <div class="card-head-dot" style="background:var(--brand-2);box-shadow:0 0 6px var(--brand-2)"></div>
-              <h3>Commercials</h3>
+              <h3>Services Catalog</h3>
             </div>
-            <div class="row">
-              <div class="row-label">Target margin</div>
-              <div class="input-shell"><input type="number" id="s-margin" value="40" class="no-prefix has-suffix"
-                  oninput="calcS()"><span class="input-suffix">%</span></div>
+            <div class="row"
+              style="background: var(--surface-2); padding: 8px 20px; border-bottom: 1px solid var(--border);">
+              <div style="flex:1; font-size:11px; color:var(--muted); font-weight:600; letter-spacing:0.05em;">SERVICE
+              </div>
+              <div
+                style="width:90px; text-align:right; font-size:11px; color:var(--muted); font-weight:600; letter-spacing:0.05em;">
+                PRICE</div>
+              <div
+                style="width:90px; text-align:right; font-size:11px; color:var(--muted); font-weight:600; letter-spacing:0.05em; margin-left:8px;">
+                GROSS PROFIT</div>
             </div>
-            <div class="row">
-              <div class="row-label">Suggested price</div><span id="s-suggested"
-                style="font-size:14px;font-weight:600;color:var(--brand-2)">—</span>
+            <!-- Service 1 -->
+            <div class="row" style="background:var(--amber-bg)">
+              <div class="row-label">Service 1</div>
+              <div class="input-shell"><input type="number" id="s-s1-price" value="9999" oninput="calcS()"
+                  style="width:90px; padding:7px; border-radius:6px; font-size:12px; border-color:rgba(245, 158, 11, 0.4)">
+              </div>
+              <div class="input-shell" style="margin-left:8px;"><input type="number" id="s-s1-gp" value="2000"
+                  oninput="calcS()"
+                  style="width:90px; padding:7px; border-radius:6px; font-size:12px; border-color:rgba(245, 158, 11, 0.4)">
+              </div>
             </div>
-            <div class="row">
-              <div class="row-label strong">Contract / service price</div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="s-sell" value="5000"
-                  oninput="calcS()" style="border-color:rgba(124,109,240,0.4)"></div>
+            <!-- Service 2 -->
+            <div class="row" style="background:var(--amber-bg)">
+              <div class="row-label">Service 2</div>
+              <div class="input-shell"><input type="number" id="s-s2-price" value="19999" oninput="calcS()"
+                  style="width:90px; padding:7px; border-radius:6px; font-size:12px; border-color:rgba(245, 158, 11, 0.4)">
+              </div>
+              <div class="input-shell" style="margin-left:8px;"><input type="number" id="s-s2-gp" value="7000"
+                  oninput="calcS()"
+                  style="width:90px; padding:7px; border-radius:6px; font-size:12px; border-color:rgba(245, 158, 11, 0.4)">
+              </div>
             </div>
-            <div class="row">
-              <div class="row-label">CAC — Client acquisition cost</div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="s-cac" value="800"
-                  oninput="calcS()"></div>
+            <!-- Service 3 -->
+            <div class="row" style="background:var(--amber-bg)">
+              <div class="row-label">Service 3</div>
+              <div class="input-shell"><input type="number" id="s-s3-price" value="14999" oninput="calcS()"
+                  style="width:90px; padding:7px; border-radius:6px; font-size:12px; border-color:rgba(245, 158, 11, 0.4)">
+              </div>
+              <div class="input-shell" style="margin-left:8px;"><input type="number" id="s-s3-gp" value="5000"
+                  oninput="calcS()"
+                  style="width:90px; padding:7px; border-radius:6px; font-size:12px; border-color:rgba(245, 158, 11, 0.4)">
+              </div>
+            </div>
+
+            <div class="total-strip">
+              <div>
+                <div class="total-strip-label">Avg Sales Value</div>
+                <div class="total-strip-val" id="s-avg-sv" style="font-size:14px; margin-top:2px;">—</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="total-strip-label">Avg Gross Profit</div>
+                <div class="total-strip-val" id="s-avg-gp"
+                  style="color:var(--brand-2); font-size:14px; margin-top:2px;">—</div>
+              </div>
             </div>
           </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div class="card-head-dot" style="background:#f59e0b;box-shadow:0 0 6px #f59e0b"></div>
+              <h3>Marketing &amp; Expenses</h3>
+            </div>
+            <div class="row" style="background:var(--amber-bg)">
+              <div class="row-label">Sales Conversion Rate<small style="color:var(--amber)">Lead to Sale %</small></div>
+              <div class="input-shell"><input type="number" id="s-conv-rate" value="5" class="no-prefix has-suffix"
+                  oninput="calcS()" style="border-color:rgba(245, 158, 11, 0.4)"><span class="input-suffix">%</span>
+              </div>
+            </div>
+            <div class="row" style="background:var(--amber-bg)">
+              <div class="row-label">Office Expenses<small style="color:var(--amber)">Fixed Monthly Cost</small></div>
+              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="s-office-exp"
+                  value="100000" oninput="calcS()" style="border-color:rgba(245, 158, 11, 0.4)"></div>
+            </div>
+          </div>
+
         </div>
+
+        <!-- RIGHT -->
         <div class="right-col">
+
           <div class="net-hero">
-            <div class="net-hero-label">Net Profit / Client</div>
-            <div class="net-hero-val" id="s-net">₹0</div>
-            <div class="net-hero-sub" id="s-net-sub">after CAC</div>
+            <div class="net-hero-label">Total Net Profit</div>
+            <div class="net-hero-val" id="s-net-profit">₹0</div>
+            <div class="net-hero-sub" id="s-net-margin-lbl">after fixed expenses</div>
           </div>
+
           <div class="card">
             <div class="card-head">
               <div class="card-head-dot" style="background:#22c55e;box-shadow:0 0 6px #22c55e"></div>
-              <h3>P&amp;L Summary</h3>
+              <h3>Campaign Projections</h3>
             </div>
-            <div class="result-row"><span class="rl">Gross Revenue</span><span class="rv brand" id="s-rev">—</span>
+            <div class="result-row"><span class="rl">Sales Volume</span><span class="rv brand" id="s-sales-vol">—</span>
             </div>
-            <div class="result-row sub"><span class="rl">— Delivery cost</span><span class="rv neg"
-                id="s-r-cogs">—</span></div>
+            <div class="result-row sub"><span class="rl">Required Leads</span><span class="rv" id="s-leads">—</span>
+            </div>
             <div class="divider"></div>
-            <div class="result-row"><span class="rl" style="font-weight:600;color:var(--text)">Gross Profit</span><span
-                class="rv pos" id="s-gross">—</span></div>
-            <div class="result-row sub"><span class="rl">— CAC (marketing)</span><span class="rv neg"
-                id="s-r-cac">—</span></div>
-            <div class="divider"></div>
-            <div class="result-row"><span class="rl" style="font-weight:700;color:var(--text)">Net Profit</span><span
-                class="rv" id="s-r-net" style="font-size:16px;">—</span></div>
-            <div class="alert warn" id="s-alert-w">⚠ Price below suggested margin target.</div>
-            <div class="alert good" id="s-alert-g">✓ On track — margin target achieved!</div>
-          </div>
-          <div class="card">
-            <div class="breakdown-2col">
-              <div class="b2">
-                <div class="b2-label">Gross Margin %</div>
-                <div class="b2-val" id="s-gm-pct">—</div>
-              </div>
-              <div class="b2">
-                <div class="b2-label">Net Margin %</div>
-                <div class="b2-val" id="s-nm-pct">—</div>
-              </div>
+            <div class="result-row"><span class="rl">Cost Per Lead (CPL)</span><span class="rv" id="s-cpl">—</span>
             </div>
+            <div class="result-row sub"><span class="rl">Cost Per Acquisition (CPA)</span><span class="rv"
+                id="s-cpa">—</span></div>
+            <div class="divider"></div>
+            <div class="result-row"><span class="rl" style="font-weight:600;color:var(--text)">Total Ads
+                Cost</span><span class="rv neg" id="s-ads-cost">—</span></div>
+            <div class="result-row"><span class="rl" style="font-weight:600;color:var(--text)">Total Gross
+                Profit</span><span class="rv pos" id="s-total-gp">—</span></div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1032,34 +1060,50 @@
 
     // ── SERVICE ──
     function calcS() {
-      const SP = val('s-sell');
-      const paymentPct = val('s-payment-pct') / 100;
-      const payment = SP * paymentPct;
-      $('s-payment').value = payment.toFixed(2);
+      const revGoal = val('s-rev-goal');
 
-      const cogs = val('s-labour') + val('s-tools') + val('s-platform') + payment + val('s-misc');
-      const margin = val('s-margin');
-      // Base cost (no % fees) for suggested price
-      const baseCost = val('s-labour') + val('s-tools') + val('s-platform') + val('s-misc');
-      const suggested = baseCost * (1 + margin / 100);
-      const gross = SP - cogs;
-      const net = gross - val('s-cac');
+      const s1 = val('s-s1-price'), gp1 = val('s-s1-gp');
+      const s2 = val('s-s2-price'), gp2 = val('s-s2-gp');
+      const s3 = val('s-s3-price'), gp3 = val('s-s3-gp');
 
-      $('s-cogs').textContent = fmt(cogs);
-      $('s-suggested').textContent = fmt(suggested);
-      $('s-rev').textContent = fmt(SP);
-      $('s-r-cogs').textContent = '− ' + fmt(cogs);
-      $('s-gross').textContent = fmt(gross); clr($('s-gross'), gross);
-      $('s-r-cac').textContent = '− ' + fmt(val('s-cac'));
-      $('s-r-net').textContent = fmt(net); clr($('s-r-net'), net);
-      $('s-net').textContent = fmt(net); $('s-net').style.color = net >= 0 ? 'var(--green)' : 'var(--red)';
-      $('s-net-sub').textContent = `${pctFmt(net, SP)} net margin`;
-      $('s-gm-pct').textContent = pctFmt(gross, SP);
-      $('s-nm-pct').textContent = pctFmt(net, SP);
+      // Only count services that are actually entered (price > 0)
+      let count = 0;
+      let sumSV = 0, sumGP = 0;
 
-      const actualM = SP > 0 ? (gross / SP * 100) : 0;
-      $('s-alert-w').classList.toggle('show', actualM < margin && SP > 0);
-      $('s-alert-g').classList.toggle('show', actualM >= margin && net > 0);
+      if (s1 > 0) { count++; sumSV += s1; sumGP += gp1; }
+      if (s2 > 0) { count++; sumSV += s2; sumGP += gp2; }
+      if (s3 > 0) { count++; sumSV += s3; sumGP += gp3; }
+
+      const avgSV = count > 0 ? (sumSV / count) : 0;
+      const avgGP = count > 0 ? (sumGP / count) : 0;
+
+      const salesVol = avgGP > 0 ? (revGoal / avgGP) : 0;
+      const convRate = val('s-conv-rate') / 100;
+      const leads = convRate > 0 ? (salesVol / convRate) : 0;
+
+      // Total Ads Cost in spreadsheet dynamically balances to Revenue Goal / 2 internally to match 50% CPA assumption
+      const adsCost = revGoal / 2;
+      const cpa = salesVol > 0 ? (adsCost / salesVol) : 0;
+      const cpl = leads > 0 ? (adsCost / leads) : 0;
+
+      const totalGP = revGoal - adsCost;
+      const officeExp = val('s-office-exp');
+      const netProfit = totalGP - officeExp;
+
+      // Formatting
+      $('s-avg-sv').textContent = fmt(avgSV);
+      $('s-avg-gp').textContent = fmt(avgGP);
+      $('s-sales-vol').textContent = Math.round(salesVol).toLocaleString('en-IN') + ' sales';
+      $('s-leads').textContent = Math.round(leads).toLocaleString('en-IN') + ' leads';
+      $('s-cpa').textContent = fmt(cpa);
+      $('s-cpl').textContent = fmt(cpl);
+      $('s-ads-cost').textContent = '− ' + fmt(adsCost);
+      $('s-total-gp').textContent = fmt(totalGP);
+
+      $('s-net-profit').textContent = fmt(netProfit);
+      clr($('s-net-profit'), netProfit);
+      $('s-net-profit').style.color = netProfit >= 0 ? 'var(--green)' : 'var(--red)';
+      $('s-net-margin-lbl').textContent = officeExp > 0 ? 'after fixed expenses' : 'Profit Projection';
     }
 
     // ── COACHING ──
