@@ -688,7 +688,7 @@
                   oninput="calcE()"><span class="input-suffix">%</span></div>
             </div>
             <div class="row">
-              <div class="row-label">Suggested selling price<small>COGS ÷ (1 − margin)</small></div>
+              <div class="row-label">Suggested selling price<small>COGS + (COGS × Margin%)</small></div>
               <span id="e-suggested" style="font-size:14px;font-weight:600;color:var(--brand-2)">—</span>
             </div>
             <div class="row">
@@ -1022,7 +1022,7 @@
 
       const cogs = val('e-product') + val('e-packaging') + shopify + payment + val('e-shipping');
       const margin = val('e-margin');
-      const suggested = cogs / (1 - margin / 100);
+      const suggested = cogs * (1 + margin / 100);
       const gross = SP - cogs;
       const net = gross - val('e-cpa');
       const gmpct = pctFmt(gross, SP), nmpct = pctFmt(net, SP);
@@ -1057,7 +1057,7 @@
 
       const cogs = val('s-labour') + val('s-tools') + val('s-platform') + payment + val('s-misc');
       const margin = val('s-margin');
-      const suggested = cogs / (1 - margin / 100);
+      const suggested = cogs * (1 + margin / 100);
       const gross = SP - cogs;
       const net = gross - val('s-cac');
 
@@ -1093,7 +1093,7 @@
       const refund = val('c-refund');
       const effRev = SP * (1 - refund / 100);
       const margin = val('c-margin');
-      const suggested = cost / (1 - margin / 100);
+      const suggested = cost * (1 + margin / 100);
       const gross = effRev - cost;
       const net = gross - val('c-cpa');
 
