@@ -640,13 +640,13 @@
             </div>
             <div class="row">
               <div class="row-label">Product cost<small>Purchase / manufacturing</small></div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-product"
-                  value="750" oninput="calcE()"></div>
+              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-product" value="0"
+                  oninput="calcE()"></div>
             </div>
             <div class="row">
               <div class="row-label">Packaging &amp; labelling</div>
               <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-packaging"
-                  value="30" oninput="calcE()"></div>
+                  value="0" oninput="calcE()"></div>
             </div>
             <div class="row">
               <div class="row-label">Platform fee<small>Shopify · % of selling price</small></div>
@@ -668,8 +668,8 @@
             </div>
             <div class="row">
               <div class="row-label">Shipping &amp; fulfilment</div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-shipping"
-                  value="80" oninput="calcE()"></div>
+              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-shipping" value="0"
+                  oninput="calcE()"></div>
             </div>
             <div class="total-strip">
               <span class="total-strip-label">Total COGS</span>
@@ -684,7 +684,7 @@
             </div>
             <div class="row">
               <div class="row-label">Target gross margin</div>
-              <div class="input-shell"><input type="number" id="e-margin" value="30" class="no-prefix has-suffix"
+              <div class="input-shell"><input type="number" id="e-margin" value="0" class="no-prefix has-suffix"
                   oninput="calcE()"><span class="input-suffix">%</span></div>
             </div>
             <div class="row">
@@ -693,12 +693,12 @@
             </div>
             <div class="row">
               <div class="row-label strong">Your selling price</div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-sell" value="1199"
+              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-sell" value="0"
                   oninput="calcE()" style="border-color:rgba(124,109,240,0.4)"></div>
             </div>
             <div class="row">
               <div class="row-label">CPA — Cost per acquisition<small>Ads / marketing spend</small></div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-cpa" value="150"
+              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-cpa" value="0"
                   oninput="calcE()"></div>
             </div>
           </div>
@@ -767,8 +767,8 @@
             <div class="row" style="background:var(--amber-bg)">
               <div class="row-label strong">Revenue Goal<small style="color:var(--amber)">Total Target Gross
                   (pre-ads)</small></div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="s-rev-goal"
-                  value="500000" oninput="calcS()" style="border-color:rgba(245, 158, 11, 0.4)"></div>
+              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="s-rev-goal" value="0"
+                  oninput="calcS()" style="border-color:rgba(245, 158, 11, 0.4)"></div>
             </div>
           </div>
 
@@ -791,10 +791,10 @@
             <!-- Service 1 -->
             <div class="row" style="background:var(--amber-bg)">
               <div class="row-label">Service 1</div>
-              <div class="input-shell"><input type="number" id="s-s1-price" value="9999" oninput="calcS()"
+              <div class="input-shell"><input type="number" id="s-s1-price" value="0" oninput="calcS()"
                   style="width:90px; padding:7px; border-radius:6px; font-size:12px; border-color:rgba(245, 158, 11, 0.4)">
               </div>
-              <div class="input-shell" style="margin-left:8px;"><input type="number" id="s-s1-gp" value="2000"
+              <div class="input-shell" style="margin-left:8px;"><input type="number" id="s-s1-gp" value="0"
                   oninput="calcS()"
                   style="width:90px; padding:7px; border-radius:6px; font-size:12px; border-color:rgba(245, 158, 11, 0.4)">
               </div>
@@ -802,10 +802,10 @@
             <!-- Service 2 -->
             <div class="row" style="background:var(--amber-bg)">
               <div class="row-label">Service 2</div>
-              <div class="input-shell"><input type="number" id="s-s2-price" value="19999" oninput="calcS()"
+              <div class="input-shell"><input type="number" id="s-s2-price" value="0" oninput="calcS()"
                   style="width:90px; padding:7px; border-radius:6px; font-size:12px; border-color:rgba(245, 158, 11, 0.4)">
               </div>
-              <div class="input-shell" style="margin-left:8px;"><input type="number" id="s-s2-gp" value="7000"
+              <div class="input-shell" style="margin-left:8px;"><input type="number" id="s-s2-gp" value="0"
                   oninput="calcS()"
                   style="width:90px; padding:7px; border-radius:6px; font-size:12px; border-color:rgba(245, 158, 11, 0.4)">
               </div>
@@ -813,10 +813,10 @@
             <!-- Service 3 -->
             <div class="row" style="background:var(--amber-bg)">
               <div class="row-label">Service 3</div>
-              <div class="input-shell"><input type="number" id="s-s3-price" value="14999" oninput="calcS()"
+              <div class="input-shell"><input type="number" id="s-s3-price" value="0" oninput="calcS()"
                   style="width:90px; padding:7px; border-radius:6px; font-size:12px; border-color:rgba(245, 158, 11, 0.4)">
               </div>
-              <div class="input-shell" style="margin-left:8px;"><input type="number" id="s-s3-gp" value="5000"
+              <div class="input-shell" style="margin-left:8px;"><input type="number" id="s-s3-gp" value="0"
                   oninput="calcS()"
                   style="width:90px; padding:7px; border-radius:6px; font-size:12px; border-color:rgba(245, 158, 11, 0.4)">
               </div>
@@ -842,14 +842,14 @@
             </div>
             <div class="row" style="background:var(--amber-bg)">
               <div class="row-label">Sales Conversion Rate<small style="color:var(--amber)">Lead to Sale %</small></div>
-              <div class="input-shell"><input type="number" id="s-conv-rate" value="5" class="no-prefix has-suffix"
+              <div class="input-shell"><input type="number" id="s-conv-rate" value="0" class="no-prefix has-suffix"
                   oninput="calcS()" style="border-color:rgba(245, 158, 11, 0.4)"><span class="input-suffix">%</span>
               </div>
             </div>
             <div class="row" style="background:var(--amber-bg)">
               <div class="row-label">Office Expenses<small style="color:var(--amber)">Fixed Monthly Cost</small></div>
               <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="s-office-exp"
-                  value="100000" oninput="calcS()" style="border-color:rgba(245, 158, 11, 0.4)"></div>
+                  value="0" oninput="calcS()" style="border-color:rgba(245, 158, 11, 0.4)"></div>
             </div>
           </div>
 
@@ -903,28 +903,28 @@
             </div>
             <div class="row">
               <div class="row-label">No of participants</div>
-              <div class="input-shell"><input type="number" id="c-participants" value="100" oninput="calcC()"
+              <div class="input-shell"><input type="number" id="c-participants" value="0" oninput="calcC()"
                   style="width:110px;"></div>
             </div>
             <div class="row">
               <div class="row-label">Trip Wire Fee</div>
               <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="c-tripwire-fee"
-                  value="299" oninput="calcC()"></div>
+                  value="0" oninput="calcC()"></div>
             </div>
             <div class="row">
               <div class="row-label">Meta Ads CPA</div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="c-meta-cpa"
-                  value="800" oninput="calcC()"></div>
+              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="c-meta-cpa" value="0"
+                  oninput="calcC()"></div>
             </div>
             <div class="row">
               <div class="row-label">CVR<small>Conversion Rate</small></div>
-              <div class="input-shell"><input type="number" id="c-cvr" value="5" class="no-prefix has-suffix"
+              <div class="input-shell"><input type="number" id="c-cvr" value="0" class="no-prefix has-suffix"
                   oninput="calcC()"><span class="input-suffix">%</span></div>
             </div>
             <div class="row">
               <div class="row-label">Upsell Value</div>
               <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="c-upsell-value"
-                  value="25000" oninput="calcC()"></div>
+                  value="0" oninput="calcC()"></div>
             </div>
           </div>
         </div>
