@@ -16,6 +16,14 @@
       padding: 0
     }
 
+    html,
+    body {
+      width: 100%;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
     :root {
       --bg: #000;
       --s1: #111;
@@ -33,7 +41,8 @@
       font-family: var(--font);
       background: var(--bg);
       color: #fff;
-      min-height: 100vh
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
     body::before {
@@ -460,13 +469,154 @@
     }
 
     @media(max-width:580px) {
+      header {
+        padding: 0.5rem 1rem;
+      }
+
+      .hero {
+        padding: 2rem 1rem;
+      }
+
       .results {
-        grid-template-columns: 1fr 1fr
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
 
       .frow {
         flex-direction: column;
-        align-items: flex-start
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      main {
+        padding: 16px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .step-head {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .snum {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+      }
+
+      .tabs-row {
+        display: none !important;
+      }
+
+      .mobile-type-indicator {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: var(--s1);
+        border: 1px solid var(--border);
+        padding: 10px 20px;
+        border-radius: 100px;
+        margin-bottom: 24px;
+        font-weight: 700;
+        color: var(--brand);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .tabs {
+        width: 100%;
+        display: flex;
+        background: var(--s1);
+        border-radius: 12px;
+        padding: 4px;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+
+      .tab {
+        flex: 1;
+        min-width: 100px;
+        padding: 10px 12px;
+        font-size: 11px;
+        justify-content: center;
+      }
+
+      .cbox {
+        padding: 16px;
+      }
+
+      .ci {
+        font-size: 12px;
+      }
+
+      .eq-body {
+        font-size: 13px;
+        padding: 12px;
+      }
+    }
+
+    /* MOBILE MENU */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #0a0a0a;
+      border-left: 1px solid var(--border);
+      padding: 80px 24px 24px;
+      z-index: 1000;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+      visibility: hidden;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+      visibility: visible;
+    }
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    @media (max-width: 768px) {
+      .header-right {
+        display: none !important;
+      }
+
+      .menu-toggle {
+        display: block;
       }
     }
 
@@ -511,11 +661,69 @@
           Works</span>
       </a>
     </div>
-    <div style="display:flex; gap: 16px; align-items:center;">
+    <div class="header-right" style="display:flex; gap: 16px; align-items:center;">
       <button class="lang-toggle" onclick="document.body.classList.toggle('en')">🌐 English / Tamil</button>
       <a href="index.html" class="back"><span class="lang-ta">← Calculator-க்கு திரும்பு</span><span class="lang-en">←
           Back to Calculator</span></a>
     </div>
+
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div
+        style="font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">
+        Business Types</div>
+      <a href="javascript:void(0)" class="tag-pill"
+        onclick="switchTab('ecom', document.querySelectorAll('.tab')[0]); toggleMenu()"
+        style="text-decoration:none;display:flex;align-items:center;gap:12px;padding:12px 20px;justify-content:flex-start;border-radius:12px; color:#fff; background:rgba(255,255,255,0.05);"><svg
+          width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg> Ecommerce</a>
+      <a href="javascript:void(0)" class="tag-pill"
+        onclick="switchTab('service', document.querySelectorAll('.tab')[1]); toggleMenu()"
+        style="text-decoration:none;display:flex;align-items:center;gap:12px;padding:12px 20px;justify-content:flex-start;border-radius:12px; color:#fff; background:rgba(255,255,255,0.05);"><svg
+          width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+          </path>
+        </svg> Service</a>
+      <a href="javascript:void(0)" class="tag-pill"
+        onclick="switchTab('coaching', document.querySelectorAll('.tab')[2]); toggleMenu()"
+        style="text-decoration:none;display:flex;align-items:center;gap:12px;padding:12px 20px;justify-content:flex-start;border-radius:12px; color:#fff; background:rgba(255,255,255,0.05);"><svg
+          width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+          <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+        </svg> Coaching</a>
+
+      <div
+        style="font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 16px; margin-bottom: 8px;">
+        Guide Options</div>
+      <button class="lang-toggle" onclick="document.body.classList.toggle('en')"
+        style="width:100%; justify-content:center; padding:12px;">🌐 Change Language</button>
+      <a href="index.html" class="back"
+        style="text-decoration:none; display:flex; align-items:center; gap:12px; padding:12px 20px; background:rgba(255,255,255,0.05); border-radius:12px; font-weight:600; color:var(--brand);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="m15 18-6-6 6-6" />
+        </svg>
+        <span class="lang-ta">Calculator-க்கு திரும்பு</span><span class="lang-en">Back to Calculator</span>
+      </a>
+    </div>
+
   </header>
   <main>
     <div class="hero">
@@ -526,7 +734,7 @@
           <line x1="12" y1="20" x2="12" y2="4"></line>
           <line x1="6" y1="20" x2="6" y2="14"></line>
         </svg> Live Guide — All Business Types</div>
-      <h1>Unit Economics <span>Step-by-Step</span></h1>
+      <h1><span id="mainTitleText">Ecommerce</span> <span>Step-by-Step</span></h1>
       <p><span class="lang-ta">உங்க business type select பண்ணி, real example-ஓட formula எப்படி work ஆகுதுன்னு
           பாருங்க.</span><span class="lang-en">Select your business type and see how the formulas work with a real
           example.</span></p>
@@ -552,6 +760,16 @@
             <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
           </svg> Coaching</div>
       </div>
+    </div>
+
+    <div class="mobile-type-indicator" id="mobileTypeIndicator" style="display:none;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+      <span id="activeTypeName">Ecommerce</span>
     </div>
 
     <!-- ═══ ECOM ═══ -->
@@ -1008,8 +1226,30 @@
       document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
       el.classList.add('active');
       document.getElementById('panel-' + name).classList.add('active');
+
+      // Update mobile indicator
+      const nameMap = { 'ecom': 'Ecommerce', 'service': 'Service', 'coaching': 'Coaching' };
+      const indicator = document.getElementById('activeTypeName');
+      if (indicator) indicator.textContent = nameMap[name];
+
+      const indicatorIcon = document.querySelector('.mobile-type-indicator svg');
+      if (indicatorIcon) indicatorIcon.innerHTML = el.querySelector('svg').innerHTML;
+
+      // Update main title
+      const titleMap = { 'ecom': 'Ecommerce', 'service': 'Service', 'coaching': 'Coaching' };
+      const mainTitleText = document.getElementById('mainTitleText');
+      if (mainTitleText) mainTitleText.textContent = titleMap[name];
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const overlay = document.getElementById('menuOverlay');
+      menu.classList.toggle('active');
+      overlay.classList.toggle('active');
+      document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
     }
   </script>
+
 </body>
 
 </html>
