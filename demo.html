@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Guide – Unit Economics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #000;
+      --s1: #111;
+      --border: rgba(255, 255, 255, 0.08);
+      --muted: #9CA3AF;
+      --muted2: #6B7280;
+      --brand: #C6F432;
+      --green: #10b981;
+      --red: #ef4444;
+      --amber: #f59e0b;
+      --font: 'Inter', sans-serif
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: #fff;
+      min-height: 100vh
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 15% 20%, rgba(198, 244, 50, 0.06) 0%, transparent 40%), radial-gradient(circle at 85% 75%, rgba(198, 244, 50, 0.04) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: .9rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px)
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.1rem
+    }
+
+    .logo span {
+      color: var(--brand)
+    }
+
+    .back {
+      padding: 7px 16px;
+      border-radius: 99px;
+      background: rgba(198, 244, 50, 0.1);
+      border: 1px solid rgba(198, 244, 50, 0.25);
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: .2s
+    }
+
+    .back:hover {
+      background: var(--brand);
+      color: #000
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 6rem
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: var(--brand);
+      padding: 5px 14px;
+      background: rgba(198, 244, 50, 0.06);
+      border: 1px solid rgba(198, 244, 50, 0.15);
+      border-radius: 99px;
+      margin-bottom: 1.2rem
+    }
+
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-weight: 900;
+      letter-spacing: -.04em;
+      margin-bottom: .8rem
+    }
+
+    .hero h1 span {
+      color: var(--brand)
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: .95rem;
+      max-width: 520px;
+      margin: 0 auto
+    }
+
+    /* TABS */
+    .tabs-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2.5rem
+    }
+
+    .tabs {
+      display: inline-flex;
+      background: var(--s1);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px;
+      gap: 4px
+    }
+
+    .tab {
+      padding: 9px 24px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--muted);
+      transition: .2s;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab:hover {
+      color: #fff
+    }
+
+    .tab.active {
+      background: var(--brand);
+      color: #000
+    }
+
+    .panel {
+      display: none
+    }
+
+    .panel.active {
+      display: block
+    }
+
+    /* STEP */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem
+    }
+
+    .step {
+      background: var(--s1);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: border-color .3s
+    }
+
+    .step:hover {
+      border-color: rgba(198, 244, 50, 0.2)
+    }
+
+    .step-head {
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02)
+    }
+
+    .snum {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #000;
+      font-weight: 900;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0
+    }
+
+    .step-head h3 {
+      font-size: 14px;
+      font-weight: 700
+    }
+
+    .step-head p {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px
+    }
+
+    .step-body {
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    /* FROW */
+    .frow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 14px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .fl {
+      display: flex;
+      flex-direction: column;
+      gap: 3px
+    }
+
+    .fl b {
+      font-size: 13px;
+      font-weight: 600;
+      color: #dfdfdf
+    }
+
+    .fl code {
+      font-size: 11px;
+      color: var(--muted2);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 2px 7px;
+      border-radius: 5px
+    }
+
+    .fv {
+      font-size: 17px;
+      font-weight: 800;
+      white-space: nowrap
+    }
+
+    .fv.brand {
+      color: var(--brand)
+    }
+
+    .fv.green {
+      color: var(--green)
+    }
+
+    .fv.red {
+      color: var(--red)
+    }
+
+    .fv.amber {
+      color: var(--amber)
+    }
+
+    .fv.muted {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600
+    }
+
+    /* COGS BOX */
+    .cbox {
+      background: rgba(198, 244, 50, 0.04);
+      border: 1px solid rgba(198, 244, 50, 0.12);
+      border-radius: 12px;
+      padding: 14px 18px
+    }
+
+    .cbox-title {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--brand);
+      margin-bottom: 10px
+    }
+
+    .ci {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .ci:last-child {
+      border: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding-top: 8px
+    }
+
+    .ci span:first-child {
+      color: var(--muted)
+    }
+
+    /* EQ BOX */
+    .eq {
+      background: rgba(198, 244, 50, 0.03);
+      border: 1px solid rgba(198, 244, 50, 0.1);
+      border-radius: 12px;
+      padding: 14px 18px
+    }
+
+    .eq-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--brand);
+      margin-bottom: 10px
+    }
+
+    .eq-body {
+      font-size: 13px;
+      font-family: monospace;
+      color: #dfdfdf;
+      line-height: 2
+    }
+
+    .eq-body .hi {
+      color: var(--brand);
+      font-weight: 700
+    }
+
+    .eq-body .cm {
+      color: var(--muted2);
+      font-size: 11px
+    }
+
+    /* RESULTS */
+    .results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px
+    }
+
+    .rcard {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center
+    }
+
+    .rcard-l {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+      margin-bottom: 6px
+    }
+
+    .rcard-v {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -.03em
+    }
+
+    /* TIP */
+    .tip {
+      display: flex;
+      gap: 10px;
+      padding: 12px 14px;
+      background: rgba(245, 158, 11, 0.05);
+      border: 1px solid rgba(245, 158, 11, 0.15);
+      border-radius: 10px
+    }
+
+    .tip-t {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6
+    }
+
+    .tip-t strong {
+      color: #fff
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 2.5rem 2rem;
+      background: var(--s1);
+      border: 1px solid var(--border);
+      border-radius: 20px
+    }
+
+    .cta h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      margin-bottom: .6rem
+    }
+
+    .cta p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 1.25rem
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: var(--brand);
+      color: #000;
+      font-weight: 800;
+      font-size: 14px;
+      border-radius: 99px;
+      text-decoration: none;
+      transition: .2s;
+      box-shadow: 0 6px 20px rgba(198, 244, 50, 0.2)
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(198, 244, 50, 0.35)
+    }
+
+    @media(max-width:580px) {
+      .results {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .frow {
+        flex-direction: column;
+        align-items: flex-start
+      }
+    }
+
+    /* LANGUAGE TOGGLE */
+    .lang-en {
+      display: none;
+    }
+
+    body.en .lang-ta {
+      display: none;
+    }
+
+    body.en .lang-en {
+      display: inline;
+    }
+
+    .lang-toggle {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 99px;
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .lang-toggle:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  </style>
+</head>
+
+<body class="en">
+  <header>
+    <div class="logo">
+      <a href="https://smdigitalworks.com/" style="display:flex; align-items:center; gap:12px; text-decoration:none;">
+        <img src="sm-logo.png" alt="SM Digital Works"
+          style="height:36px; width:auto; object-fit:contain; filter: brightness(1.1);">
+        <span style="font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; color: #fff;">SM Digital
+          Works</span>
+      </a>
+    </div>
+    <div style="display:flex; gap: 16px; align-items:center;">
+      <button class="lang-toggle" onclick="document.body.classList.toggle('en')">🌐 English / Tamil</button>
+      <a href="index.html" class="back"><span class="lang-ta">← Calculator-க்கு திரும்பு</span><span class="lang-en">←
+          Back to Calculator</span></a>
+    </div>
+  </header>
+  <main>
+    <div class="hero">
+      <div class="eyebrow"><svg style="display:inline-block; vertical-align:middle; margin-right:4px;" width="14"
+          height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"></line>
+          <line x1="12" y1="20" x2="12" y2="4"></line>
+          <line x1="6" y1="20" x2="6" y2="14"></line>
+        </svg> Live Guide — All Business Types</div>
+      <h1>Unit Economics <span>Step-by-Step</span></h1>
+      <p><span class="lang-ta">உங்க business type select பண்ணி, real example-ஓட formula எப்படி work ஆகுதுன்னு
+          பாருங்க.</span><span class="lang-en">Select your business type and see how the formulas work with a real
+          example.</span></p>
+    </div>
+
+    <div class="tabs-row">
+      <div class="tabs">
+        <div class="tab active" onclick="switchTab('ecom',this)"><svg width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg> Ecommerce</div>
+        <div class="tab" onclick="switchTab('service',this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z">
+            </path>
+          </svg> Service</div>
+        <div class="tab" onclick="switchTab('coaching',this)"><svg width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg> Coaching</div>
+      </div>
+    </div>
+
+    <!-- ═══ ECOM ═══ -->
+    <div class="panel active" id="panel-ecom">
+      <div class="steps">
+        <div class="step">
+          <div class="step-head">
+            <div class="snum">1</div>
+            <div>
+              <h3><span class="lang-ta">COGS கணக்கிடுவோம்</span><span class="lang-en">Let's calculate COGS</span></h3>
+              <p>Cost of Goods Sold — Product: Fashion Apparel @ ₹1,199 selling price</p>
+            </div>
+          </div>
+          <div class="step-body">
+            <div class="cbox">
+              <div class="cbox-title">COGS Breakdown — =SUM(B1:B5)</div>
+              <div class="ci"><span>B1 · Product cost</span><span>₹750.00</span></div>
+              <div class="ci"><span>B2 · Packaging &amp; Labelling</span><span>₹30.00</span></div>
+              <div class="ci"><span>B3 · Shopify Fee (2% of ₹1199)</span><span>₹23.98</span></div>
+              <div class="ci"><span>B4 · Payment Gateway MAX(₹40, 2%=₹23.98)</span><span>₹40.00</span></div>
+              <div class="ci"><span>B5 · Shipping</span><span>₹80.00</span></div>
+              <div class="ci"><span><strong>B6 · Total COGS</strong></span><span
+                  style="color:var(--brand)"><strong>₹923.98</strong></span></div>
+            </div>
+            <div class="tip">
+              <div>💡</div>
+              <div class="tip-t"><strong>Payment Rule:</strong> ₹1199 × 2% = ₹23.98 <span
+                  class="lang-ta">ஆனா</span><span class="lang-en">but</span> minimum ₹40 → MAX(₹40, ₹23.98) =
+                <strong>₹40</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head">
+            <div class="snum">2</div>
+            <div>
+              <h3>Suggested Selling Price</h3>
+              <p>Formula: =B6+(B6×B7) — Minimum price to target 30% margin</p>
+            </div>
+          </div>
+          <div class="step-body">
+            <div class="frow">
+              <div class="fl"><b>Profit Margin</b><code>=B7 → 30%</code></div>
+              <div class="fv muted">30%</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Suggested Price</b><code>=B6+(B6×30%) = ₹923.98+₹277.19</code></div>
+              <div class="fv brand">₹1,201.17</div>
+            </div>
+            <div class="tip">
+              <div style="color:var(--amber);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg></div>
+              <div class="tip-t"><strong>Actual vs Suggested:</strong> Actual = ₹1,199 vs Suggested ₹1,201.17 — slightly
+                under <span class="lang-ta">ஆனா</span><span class="lang-en">but</span> still profitable!</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head">
+            <div class="snum">3</div>
+            <div>
+              <h3>Gross Profit &amp; Net Profit</h3>
+              <p>Formula: B10=B9−B6 &nbsp;|&nbsp; B12=B10−B11</p>
+            </div>
+          </div>
+          <div class="step-body">
+            <div class="eq">
+              <div class="eq-title">Calculation</div>
+              <div class="eq-body">
+                Selling Price &nbsp;&nbsp;= <span class="hi">₹1,199.00</span> <span class="cm">← B9</span><br>
+                − COGS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <span class="hi">₹923.98</span> &nbsp;<span
+                  class="cm">← B6</span><br>
+                = Gross Profit &nbsp;= <span class="hi">₹275.02</span> &nbsp;<span class="cm">← B10=B9−B6</span><br>
+                − CPA (Ads) &nbsp;&nbsp;&nbsp;= <span class="hi">₹150.00</span> &nbsp;<span class="cm">← B11</span><br>
+                = Net Profit &nbsp;&nbsp;&nbsp;= <span class="hi">₹125.02</span> &nbsp;<span class="cm">←
+                  B12=B10−B11</span>
+              </div>
+            </div>
+            <div class="results">
+              <div class="rcard">
+                <div class="rcard-l">COGS</div>
+                <div class="rcard-v brand">₹923.98</div>
+              </div>
+              <div class="rcard">
+                <div class="rcard-l">Gross Profit</div>
+                <div class="rcard-v green">₹275.02</div>
+              </div>
+              <div class="rcard">
+                <div class="rcard-l">Net Profit</div>
+                <div class="rcard-v brand">₹125.02</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head">
+            <div class="snum">4</div>
+            <div>
+              <h3>Formula Cheat Sheet — Ecom</h3>
+              <p>Quick reference for all formulas</p>
+            </div>
+          </div>
+          <div class="step-body">
+            <div class="frow">
+              <div class="fl"><b>Shopify Fee</b><code>=Selling Price × Shopify%</code></div>
+              <div class="fv muted">₹1199 × 2% = ₹23.98</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Payment Gateway</b><code>=MAX(₹40, Selling Price × 2%)</code></div>
+              <div class="fv muted">₹40.00</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Total COGS</b><code>=SUM(B1:B5)</code></div>
+              <div class="fv muted">₹923.98</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Suggested Price</b><code>=COGS + (COGS × Margin%)</code></div>
+              <div class="fv muted">₹1,201.17</div>
+            </div>
+
+            <div class="frow">
+              <div class="fl"><b>Gross Profit</b><code>=Selling Price − COGS</code></div>
+              <div class="fv green">₹275.02</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Net Profit</b><code>=Gross Profit − CPA</code></div>
+              <div class="fv brand">₹125.02</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>GP Margin %</b><code>=(Gross Profit ÷ Selling Price) × 100</code></div>
+              <div class="fv muted">22.9%</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Net Margin %</b><code>=(Net Profit ÷ Selling Price) × 100</code></div>
+              <div class="fv muted">10.4%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SERVICE ═══ -->
+    <div class="panel" id="panel-service">
+      <div class="steps">
+        <div class="step">
+          <div class="step-head">
+            <div class="snum">1</div>
+            <div>
+              <h3>Business Goal Setup</h3>
+              <p>Example: Digital Marketing Agency — Revenue Goal ₹3,00,000/month</p>
+            </div>
+          </div>
+          <div class="step-body">
+            <div class="frow">
+              <div class="fl"><b>Current Revenue</b><code>=B1 → existing monthly revenue</code></div>
+              <div class="fv muted">₹1,00,000</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Revenue Goal</b><code>=B2 → target gross revenue</code></div>
+              <div class="fv brand">₹3,00,000</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Revenue Difference</b><code>=B2 − B1 = ₹3L − ₹1L</code></div>
+              <div class="fv amber">₹2,00,000</div>
+            </div>
+            <div class="tip">
+              <div style="color:var(--brand);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.9 1.2 1.5 1.5 2.5">
+                  </path>
+                  <path d="M9 18h6"></path>
+                  <path d="M10 22h4"></path>
+                </svg></div>
+              <div class="tip-t"><strong>Gap to Close:</strong> ₹2,00,000 more revenue <span class="lang-ta">generate
+                  பண்ணணும் — எத்தனை sales
+                  வேணும்னு Step 2-ல பாக்கலாம்.</span><span class="lang-en">to generate — let's see how many sales are
+                  needed in Step 2.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head">
+            <div class="snum">2</div>
+            <div>
+              <h3>Services Catalog &amp; Avg GP</h3>
+              <p><span class="lang-ta">3 services-ல average sales value &amp; gross profit calculate</span><span
+                  class="lang-en">Calculate average sales value &amp; gross profit across 3 services</span></p>
+            </div>
+          </div>
+          <div class="step-body">
+            <div class="cbox">
+              <div class="cbox-title">Service Mix</div>
+              <div class="ci"><span>Service 1 · Social Media Mgmt</span><span>₹15,000 | GP ₹12,000</span></div>
+              <div class="ci"><span>Service 2 · SEO Service</span><span>₹20,000 | GP ₹16,000</span></div>
+              <div class="ci"><span>Service 3 · Ads Management</span><span>₹25,000 | GP ₹20,000</span></div>
+              <div class="ci"><span><strong>Avg Sales Value</strong></span><span
+                  style="color:#fff"><strong>₹20,000</strong></span></div>
+              <div class="ci"><span><strong>Avg Gross Profit</strong></span><span
+                  style="color:var(--brand)"><strong>₹16,000</strong></span></div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Avg Sales Value</b><code>=(₹15K+₹20K+₹25K)÷3</code></div>
+              <div class="fv muted">₹20,000</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Avg Gross Profit</b><code>=(₹12K+₹16K+₹20K)÷3</code></div>
+              <div class="fv green">₹16,000</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head">
+            <div class="snum">3</div>
+            <div>
+              <h3>Campaign Projections</h3>
+              <p>CVR 10% | Office Expenses ₹75,000/month</p>
+            </div>
+          </div>
+          <div class="step-body">
+            <div class="eq">
+              <div class="eq-title">Step-by-Step Calculation</div>
+              <div class="eq-body">
+                Sales Needed &nbsp;&nbsp;= Rev Diff ÷ Avg GP = ₹2L ÷ ₹16K = <span class="hi">12.5 sales</span><br>
+                Leads Needed &nbsp;&nbsp;= Sales ÷ CVR = 12.5 ÷ 10% = <span class="hi">125 leads</span><br>
+                CPA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= Avg GP × 30% = ₹16K × 30% =
+                <span class="hi">₹4,800</span><br>
+                Total Ads Cost = CPA × Sales = ₹4,800 × 12.5 = <span class="hi">₹60,000</span><br>
+                Contribution &nbsp;&nbsp;= (New GP + Existing GP) − Ads = (₹2L + ₹80K) - ₹60K = <span
+                  class="hi">₹2,20,000</span><br>
+                Net Profit &nbsp;&nbsp;&nbsp;&nbsp;= Contribution − Office Expenses + Existing GP = ₹2.2L - ₹75K + ₹80K
+                = <span class="hi">₹2,25,000</span>
+              </div>
+            </div>
+            <div class="results">
+              <div class="rcard">
+                <div class="rcard-l">Sales Needed</div>
+                <div class="rcard-v brand">13</div>
+              </div>
+              <div class="rcard">
+                <div class="rcard-l">Leads Needed</div>
+                <div class="rcard-v amber">125</div>
+              </div>
+              <div class="rcard">
+                <div class="rcard-l">CPA / Sale</div>
+                <div class="rcard-v green">₹4,800</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head">
+            <div class="snum">4</div>
+            <div>
+              <h3>Formula Cheat Sheet — Service</h3>
+              <p>Quick reference for all formulas</p>
+            </div>
+          </div>
+          <div class="step-body">
+            <div class="frow">
+              <div class="fl"><b>Revenue Difference</b><code>=Revenue Goal − Current Revenue</code></div>
+              <div class="fv amber">₹2,00,000</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Sales Volume Needed</b><code>=Rev Diff ÷ Avg GP/sale</code></div>
+              <div class="fv muted">13 sales</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Leads Required</b><code>=Sales Volume ÷ CVR%</code></div>
+              <div class="fv muted">125 leads</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>CPA (Cost Per Acquisition)</b><code>=Avg GP × 30%</code></div>
+              <div class="fv muted">₹4,800</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Total Ads Cost</b><code>=CPA × Exact Sales Volume (12.5)</code></div>
+              <div class="fv red">₹60,000</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Contribution Margin</b><code>=(New GP + Existing GP) − Ads</code></div>
+              <div class="fv green">₹2,20,000</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Net Profit</b><code>=Contribution − Office Expenses + Existing GP</code></div>
+              <div class="fv brand">₹2,25,000</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>GP Margin %</b><code>=Total GP ÷ Revenue Goal</code></div>
+              <div class="fv muted">93.3%</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Net Margin %</b><code>=Net Profit ÷ Revenue Goal</code></div>
+              <div class="fv muted">75.0%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ COACHING ═══ -->
+    <div class="panel" id="panel-coaching">
+      <div class="steps">
+        <div class="step">
+          <div class="step-head">
+            <div class="snum">1</div>
+            <div>
+              <h3>Inputs Setup</h3>
+              <p>Example: Online Workshop — 100 participants, ₹999 Tripwire Fee</p>
+            </div>
+          </div>
+          <div class="step-body">
+            <div class="frow">
+              <div class="fl"><b>No. of
+                  Participants</b><code><span class="lang-ta">Ads மூலம் register ஆனவங்க</span><span class="lang-en">Registered through Ads</span></code>
+              </div>
+              <div class="fv muted">100</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Tripwire Fee</b><code>Low-cost entry offer price</code></div>
+              <div class="fv brand">₹999</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Meta Ads CPA</b><code>Per participant ads cost</code></div>
+              <div class="fv red">₹200</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Conversion Rate (CVR)</b><code>Workshop → High-ticket upsell</code></div>
+              <div class="fv amber">20%</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Upsell Value</b><code>High-ticket program price</code></div>
+              <div class="fv green">₹5,000</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head">
+            <div class="snum">2</div>
+            <div>
+              <h3>Automated Outcomes</h3>
+              <p>Tripwire revenue + Upsell revenue − Ads spend</p>
+            </div>
+          </div>
+          <div class="step-body">
+            <div class="eq">
+              <div class="eq-title">Calculation Breakdown</div>
+              <div class="eq-body">
+                Tripwire Revenue = Participants × Fee = 100 × ₹999 = <span class="hi">₹99,900</span><br>
+                Marketing Spend &nbsp;= Participants × CPA = 100 × ₹200 = <span class="hi">₹20,000</span><br>
+                Upsell Count &nbsp;&nbsp;&nbsp;= Participants × CVR = 100 × 20% = <span class="hi">20 sales</span><br>
+                Upsell Revenue &nbsp;&nbsp;= Count × Value = 20 × ₹5,000 = <span class="hi">₹1,00,000</span><br>
+                ──────────────────────────────────────<br>
+                Total Profit &nbsp;&nbsp;&nbsp;= ₹99,900 + ₹1,00,000 − ₹20,000 = <span class="hi">₹1,79,900</span>
+              </div>
+            </div>
+            <div class="results">
+              <div class="rcard">
+                <div class="rcard-l">Tripwire Rev</div>
+                <div class="rcard-v brand">₹99,900</div>
+              </div>
+              <div class="rcard">
+                <div class="rcard-l">Upsell Rev</div>
+                <div class="rcard-v green">₹1,00,000</div>
+              </div>
+              <div class="rcard">
+                <div class="rcard-l">Net Profit</div>
+                <div class="rcard-v brand">₹1,79,900</div>
+              </div>
+            </div>
+            <div class="tip">
+              <div style="color:#ff6b6b;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z">
+                  </path>
+                </svg></div>
+              <div class="tip-t"><strong>Power of Upsell:</strong> Tripwire alone ₹79,900 profit <span
+                  class="lang-ta">ஆனா upsell add பண்ணா</span><span class="lang-en">but adding an upsell makes it</span>
+                <strong style="color:var(--brand)">₹1,79,900</strong> — 2.25x more!
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head">
+            <div class="snum">3</div>
+            <div>
+              <h3>Formula Cheat Sheet — Coaching</h3>
+              <p>Quick reference for all formulas</p>
+            </div>
+          </div>
+          <div class="step-body">
+            <div class="frow">
+              <div class="fl"><b>Tripwire Revenue</b><code>=Participants × Tripwire Fee</code></div>
+              <div class="fv brand">₹99,900</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Marketing Spend</b><code>=Participants × Meta CPA</code></div>
+              <div class="fv red">₹20,000</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Upsell Count</b><code>=Participants × CVR%</code></div>
+              <div class="fv muted">20 sales</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Upsell Revenue</b><code>=Upsell Count × Upsell Value</code></div>
+              <div class="fv green">₹1,00,000</div>
+            </div>
+            <div class="frow">
+              <div class="fl"><b>Total Net Profit</b><code>=Tripwire Rev + Upsell Rev − Ads</code></div>
+              <div class="fv brand">₹1,79,900</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2><span class="lang-ta">இப்போ உங்க Numbers Try பண்ணுங்க!</span><span class="lang-en">Try your Numbers
+          Now!</span> <svg style="display:inline-block; vertical-align:middle; margin-left:8px;" width="24" height="24"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+          <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z">
+          </path>
+          <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+          <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+        </svg></h2>
+      <p><span class="lang-ta">Guide values clear ஆச்சா? Calculator-ல உங்க actual numbers போட்டு profit check
+          பண்ணுங்க.</span><span class="lang-en">Are the guide values clear? Enter your actual numbers in the calculator
+          to check your profit.</span></p>
+      <a href="index.html" class="cta-btn"><span class="lang-ta">➜ Calculator திறக்கவும்</span><span class="lang-en">➜
+          Open Calculator</span></a>
+    </div>
+  </main>
+
+  <script>
+    function switchTab(name, el) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('panel-' + name).classList.add('active');
+    }
+  </script>
+</body>
+
+</html>

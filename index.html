@@ -196,6 +196,9 @@
       color: var(--muted);
       transition: all 0.2s ease;
       user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .tab:hover {
@@ -208,7 +211,7 @@
       box-shadow: 0 4px 20px rgba(198, 244, 50, 0.25);
     }
 
-    .tab.active span {
+    .tab.active span, .tab.active svg {
       filter: grayscale(1) brightness(0);
     }
 
@@ -356,7 +359,7 @@
       right: 14px;
     }
 
-    input[type=number] {
+    input {
       width: 140px;
       padding: 12px 14px 12px 28px;
       background: #000;
@@ -373,23 +376,23 @@
       appearance: none;
     }
 
-    input[type=number]::-webkit-outer-spin-button,
-    input[type=number]::-webkit-inner-spin-button {
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
 
-    input[type=number]:focus {
+    input:focus {
       border-color: var(--brand);
       box-shadow: 0 0 0 1px var(--brand), 0 0 20px rgba(198, 244, 50, 0.1);
       background: rgba(198, 244, 50, 0.02);
     }
 
-    input[type=number].no-prefix {
+    input.no-prefix {
       padding-left: 14px;
     }
 
-    input[type=number].has-suffix {
+    input.has-suffix {
       padding-right: 32px;
       padding-left: 14px;
     }
@@ -627,7 +630,7 @@
       color: #fff;
     }
 
-    .catalog-row input[type=number] {
+    .catalog-row input {
       width: 100px;
       padding: 8px 12px;
       font-size: 14px;
@@ -671,6 +674,19 @@
       color: var(--brand);
       text-shadow: 0 0 16px var(--brand-glow);
     }
+
+    /* FORMATTED NUMBER HINT */
+    .num-hint {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--brand);
+      letter-spacing: 0.02em;
+      opacity: 0.8;
+      min-height: 14px;
+      display: block;
+      transition: opacity 0.2s;
+    }
+    .num-hint:empty { display: none; }
   </style>
 </head>
 
@@ -688,6 +704,7 @@
       </a>
     </div>
     <div class="topbar-right">
+      <a href="demo.html" class="tag-pill" style="text-decoration:none;background:rgba(198,244,50,0.15);border-color:rgba(198,244,50,0.35);display:flex;align-items:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg> Guide</a>
       <a href="https://smdigitalworks.com/" class="tag-pill" style="text-decoration:none;">Other Products</a>
     </div>
   </header>
@@ -705,9 +722,9 @@
     <!-- TABS -->
     <div class="tabs-row">
       <div class="tabs">
-        <div class="tab active" onclick="switchTab('ecom',this)"><span>🛍</span> Ecommerce</div>
-        <div class="tab" onclick="switchTab('service',this)"><span>🔧</span> Service</div>
-        <div class="tab" onclick="switchTab('coaching',this)"><span>🎓</span> Coaching</div>
+        <div class="tab active" onclick="switchTab('ecom',this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg> Ecommerce</div>
+        <div class="tab" onclick="switchTab('service',this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg> Service</div>
+        <div class="tab" onclick="switchTab('coaching',this)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg> Coaching</div>
       </div>
     </div>
 
@@ -727,13 +744,11 @@
             </div>
             <div class="row">
               <div class="row-label">Product cost<small>Purchase / manufacturing</small></div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-product" value="0"
-                  oninput="calcE()"></div>
+              <div class="input-shell"><span class="input-prefix">₹</span><input type="text" inputmode="numeric" class="fmt-input" id="e-product" value="0" oninput="calcE()"></div>
             </div>
             <div class="row">
               <div class="row-label">Packaging &amp; labelling</div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-packaging"
-                  value="0" oninput="calcE()"></div>
+              <div class="input-shell"><span class="input-prefix">₹</span><input type="text" inputmode="numeric" class="fmt-input" id="e-packaging" value="0" oninput="calcE()"></div>
             </div>
             <div class="row">
               <div class="row-label">Platform fee<small>Shopify · % of selling price</small></div>
@@ -753,11 +768,12 @@
             </div>
             <div class="row">
               <div class="row-label">Shipping &amp; fulfilment</div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-shipping" value="0"
-                  oninput="calcE()"></div>
+              <div class="input-shell"><span class="input-prefix">₹</span><input type="text" inputmode="numeric" class="fmt-input" id="e-shipping" value="0" oninput="calcE()"></div>
             </div>
             <div class="total-strip">
-              <span class="total-strip-label">Total COGS</span>
+              <span class="total-strip-label">Total COGS<span
+                  style="display:block;font-size:10px;font-weight:500;letter-spacing:0.05em;opacity:0.7;margin-top:2px;">Cost
+                  of Goods Sold</span></span>
               <span class="total-strip-val" id="e-cogs">—</span>
             </div>
           </div>
@@ -773,18 +789,16 @@
                   oninput="calcE()"><span class="input-suffix">%</span></div>
             </div>
             <div class="row">
-              <div class="row-label">Suggested selling price<small>COGS + (COGS × Margin%)</small></div>
-              <span id="e-suggested" style="font-size:14px;font-weight:600;color:var(--brand-2)">—</span>
+              <div class="row-label">Suggested selling price<small>= COGS + (COGS × Margin%)</small></div>
+              <span id="e-suggested" style="font-size:14px;font-weight:600;color:var(--brand)">—</span>
             </div>
             <div class="row">
               <div class="row-label strong">Your selling price</div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-sell" value="0"
-                  oninput="calcE()" style="border-color:rgba(124,109,240,0.4)"></div>
+              <div class="input-shell"><span class="input-prefix">₹</span><input type="text" inputmode="numeric" class="fmt-input" id="e-sell" value="0" oninput="calcE()" style="border-color:rgba(124,109,240,0.4)"></div>
             </div>
             <div class="row">
               <div class="row-label">CPA — Cost per acquisition<small>Ads / marketing spend</small></div>
-              <div class="input-shell"><span class="input-prefix">₹</span><input type="number" id="e-cpa" value="0"
-                  oninput="calcE()"></div>
+              <div class="input-shell"><span class="input-prefix">₹</span><input type="text" inputmode="numeric" class="fmt-input" id="e-cpa" value="0" oninput="calcE()"></div>
             </div>
           </div>
 
@@ -1087,7 +1101,9 @@
     const $ = id => cache[id] || (cache[id] = document.getElementById(id));
     const val = id => {
       const el = $(id);
-      return el ? +el.value : 0;
+      if (!el) return 0;
+      let raw = el.value.toString().replace(/,/g, '');
+      return parseFloat(raw) || 0;
     };
 
     // Pre-initialize NumberFormat for Indian Rupees (faster than toLocaleString)
@@ -1123,29 +1139,47 @@
     window.calcS = _calcS;
     window.calcC = _calcC;
 
-    // ── ECOM CALCULATION (Optimized) ──
+    // ── ECOM CALCULATION — Exact Excel Sheet Formulas ──
+    // Sheet formulas:
+    //  B3 (Shopify 2%)  = B9 * 2%          → selling price × shopify%
+    //  B4 (Payment)     = MAX(40, B9×2%)    → selling price × payment% or min ₹40
+    //  B6 (COGS)        = SUM(B1:B5)        → product + packaging + shopify + payment + shipping
+    //  B8 (Suggested)   = B6 + (B6 × B7)   → COGS + (COGS × margin%)
+    //  B10 (Gross)      = B9 − B6           → selling price − COGS
+    //  B12 (Net Profit) = B10 − B11         → gross profit − CPA
     function _calcE() {
-      const SP = val('e-sell');
+      const SP = val('e-sell');                          // B9 — Your Selling Price
+      const margin = val('e-margin') / 100;              // B7 — Profit Margin %
+
+      // B3: Shopify fee = Selling Price × Shopify%
       const shopifyPct = val('e-shopify-pct') / 100;
-      const shopify = SP * shopifyPct;
+      const shopify = SP * shopifyPct;                   // =B9 * 2%
+
+      // B4: Payment = MAX(₹40, Selling Price × Payment%)
       const paymentPct = val('e-payment-pct') / 100;
-      const payment = SP > 0 ? Math.max(40, SP * paymentPct) : 0;
+      const payment = SP > 0 ? Math.max(40, SP * paymentPct) : 0; // =MAX(40, B9*pct%) — only when SP > 0
 
       $('e-shopify').textContent = fmt(shopify);
       $('e-payment').textContent = fmt(payment);
 
+      // B6: COGS = SUM(B1:B5) = product + packaging + shopify + payment + shipping
       const cogs = val('e-product') + val('e-packaging') + shopify + payment + val('e-shipping');
-      const margin = val('e-margin');
 
-      const baseCost = val('e-product') + val('e-packaging') + val('e-shipping');
-      const suggested = baseCost * (1 + margin / 100);
-      const gross = SP - cogs;
-      const net = gross - val('e-cpa');
+      // B8: Suggested Selling Price = COGS + (COGS × Margin%)
+      // This is the CORRECT formula from the sheet: =B6+(B6*B7)
+      const suggested = cogs + (cogs * margin);          // =B6+(B6*B7)
+
+      // B10: Gross Profit = Selling Price − COGS
+      const gross = SP - cogs;                           // =B9-B6
+
+      // B12: Net Profit = Gross Profit − CPA
+      const net = gross - val('e-cpa');                  // =B10-B11
+
       const gmpct = pctFmt(gross, SP);
       const nmpct = pctFmt(net, SP);
 
       $('e-cogs').textContent = fmt(cogs);
-      $('e-suggested').textContent = fmt(suggested);
+      $('e-suggested').textContent = SP > 0 || margin > 0 ? fmt(suggested) : '—';
       $('e-rev').textContent = fmt(SP);
       $('e-r-cogs').textContent = '− ' + fmt(cogs);
 
@@ -1174,7 +1208,7 @@
         }
       }
 
-      $('e-net-sub').textContent = `${nmpct} net margin`;
+      $('e-net-sub').textContent = `${nmpct} net margin · after CPA`;
       $('e-gm-pct').textContent = gmpct;
       $('e-nm-pct').textContent = nmpct;
     }
@@ -1305,11 +1339,43 @@
       }
     }
 
-    // Initial run
-    _calcE();
-    _calcS();
-    _calcC();
+    // Run initial calculations
+    document.addEventListener('DOMContentLoaded', () => {
+      _calcE(); _calcS(); _calcC();
+      
+      // Setup formatters for explicit fmt-inputs (Ecommerce) and all appropriate number inputs
+      document.querySelectorAll('input[type="number"], input.fmt-input').forEach(input => {
+        if (!input.id.includes('pct') && input.id !== 'e-margin' && input.id !== 's-cvr' && input.id !== 'c-cvr' && input.id !== 'c-participants') {
+          // Convert to text to allow commas
+          input.type = 'text';
+          input.inputMode = 'numeric';
+          input.classList.add('fmt-input');
+        }
+      });
 
+      // Delegate input event for formatting
+      document.addEventListener('input', function(e) {
+        if (e.target.classList.contains('fmt-input')) {
+          let raw = e.target.value.replace(/,/g, '').replace(/[^\d.]/g, '');
+          if (raw !== '') {
+            let parts = raw.split('.');
+            let formatted = Number(parts[0]).toLocaleString('en-IN');
+            if (parts.length > 1) {
+              formatted += '.' + parts[1];
+            }
+            
+            if (e.target.value !== formatted) {
+               let cursor = e.target.selectionStart;
+               let diff = formatted.length - e.target.value.length;
+               e.target.value = formatted;
+               e.target.setSelectionRange(cursor + diff, cursor + diff);
+            }
+          } else {
+             e.target.value = '';
+          }
+        }
+      });
+    });
   </script>
 </body>
 
